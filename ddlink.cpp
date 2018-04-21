@@ -1,27 +1,20 @@
-# 一个简单双向链表-内容倒置
-------
+#include <stdio.h>
+#include <stdlib.h>
 
-###双向链表比基础的链表结构多了一个前置指针。
-```c
 struct node {
 	int data;
 	node *p;
 	node *n;
 };
-```
-###链表对象
-```c
+
 struct dd_link
 {
 	node *head;
 	node *tail;
 };
-```
-###添加元素
-```c
 void add(dd_link *link,node *n,bool first = false)
 {
-	//需要复制 node内容需要malloc 这里不做内容复制只做逻辑处理
+
 	if (link->head==NULL)
 	{
 		link->head = link->tail = n;
@@ -43,10 +36,15 @@ void add(dd_link *link,node *n,bool first = false)
 		}
 	}
 }
-```
-###内容倒置 逻辑很简单就是把 前置和后继 指针做一下交换
-```c
-//交换
+void loop_print(dd_link *link)
+{
+	node *r = link->head;
+	while (r!=NULL)
+	{
+		printf("node=>%d\n", r->data);
+		r = r->n;
+	}
+}
 void swap(node *&x, node *&y)
 {
 
@@ -54,10 +52,9 @@ void swap(node *&x, node *&y)
 	x = y;
 	y = temp;
 }
-//倒置
 void rever(dd_link *link)
 {
-	node* n, *old_head;n = old_root = link->head;
+	node* n, *old_head;n = old_head = link->head;
 	while (n != NULL)
 	{
 		node *tmp_n = n;
@@ -68,13 +65,11 @@ void rever(dd_link *link)
 	link->tail = old_head;
 }
 
-```
-测试
-```c
- void main( void )   
-{   
+
+void main( void )
+{
 	 dd_link link = {};
-	 link.root = NULL;
+	 link.head = NULL;
 	 link.tail = NULL;
 
 	 node node1 = {};
@@ -94,5 +89,6 @@ void rever(dd_link *link)
 	 rever(&link);
 	 printf("after rever\n");
 	 loop_print(&link);
-}
-```
+	 system("pause");
+   return;
+ }
