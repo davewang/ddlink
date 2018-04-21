@@ -1,7 +1,7 @@
 # 一个简单双向链表-内容倒置
 ------
 
-###双向链表比基础的链表结构多了一个前置指针。
+### 双向链表比基础的链表结构多了一个前置指针。
 ```c
 struct node {
 	int data;
@@ -9,7 +9,7 @@ struct node {
 	node *n;
 };
 ```
-###链表对象
+### 链表对象
 ```c
 struct dd_link
 {
@@ -17,7 +17,7 @@ struct dd_link
 	node *tail;
 };
 ```
-###添加元素
+### 添加元素
 ```c
 void add(dd_link *link,node *n,bool first = false)
 {
@@ -44,7 +44,7 @@ void add(dd_link *link,node *n,bool first = false)
 	}
 }
 ```
-###内容倒置 逻辑很简单就是把 前置和后继 指针做一下交换
+### 内容倒置 逻辑很简单就是把 前置和后继 指针做一下交换
 ```c
 //交换
 void swap(node *&x, node *&y)
@@ -69,7 +69,7 @@ void rever(dd_link *link)
 }
 
 ```
-测试
+### 测试
 ```c
  void main( void )   
 {   
